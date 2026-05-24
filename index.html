@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Babypink 💕</title>
+    <style>
+        /* Base Styles & Soft Pink Gradient Background */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Main Container Card */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.4);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border: 2px solid #fff;
+            z-index: 10;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Typography */
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        p {
+            color: #6c757d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Interactive Cheer Up Button */
+        .cheer-btn {
+            background: linear-gradient(45deg, #ff758f, #ff4d6d);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cheer-btn:hover {
+            background: linear-gradient(45deg, #ff4d6d, #c9184a);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+        }
+
+        .cheer-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Cute Animal Showcase Container */
+        .animal-container {
+            margin-top: 30px;
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Animated Animal Text/Emoji */
+        .animal-emoji {
+            font-size: 5rem;
+            animation: bounce 2s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        /* Floating Hearts Layer */
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(var(--random-x)) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Hey Babypink ✨</h1>
+        <p>I heard your mood is a little off today, so I made this just to bring a smile back to your face. You deserve all the happiness in the world! 💖</p>
+        
+        <button class="cheer-btn" onclick="cheerUp()">Click for Love & Cute Things! ✨</button>
+
+        <div class="animal-container" id="animal-display">
+            <!-- Starting cute animal -->
+            <div class="animal-emoji">🐰</div>
+        </div>
+    </div>
+
+    <script>
+        // Array of cute animal emojis and sweet custom messages
+        const cuteStuff = [
+            { emoji: "🐰", msg: "A soft little bunny sent to hug away your worries!" },
+            { emoji: "🐱", msg: "A sweet kitty purring just to make you feel comfortable!" },
+            { emoji: "🐼", msg: "A giant, clumsy panda sending you a warm, cozy hug!" },
+            { emoji: "🐻", msg: "A cuddly teddy bear reminder that you are deeply cared for!" },
+            { emoji: "🐶", msg: "A happy puppy wagging its tail because you're amazing!" },
+            { emoji: "🐹", msg: "A tiny hamster cheering for you with all its might!" },
+            { emoji: "🐥", msg: "A little chick chirping to remind you how bright you shine!" },
+            { emoji: "🐨", msg: "A sleepy koala reminding you to take it easy and relax!" }
+        ];
+
+        // Function that triggers when the button is clicked
+        function cheerUp() {
+            // 1. Shower multiple hearts
+            for (let i = 0; i < 15; i++) {
+                createHeart();
+            }
+
+            // 2. Cycle to a random cute animal and update text
+            const textElement = document.querySelector('.card p');
+            const displayDiv = document.getElementById('animal-display');
+            
+            const randomChoice = cuteStuff[Math.floor(Math.random() * cuteStuff.length)];
+            
+            // Apply a quick fade effect
+            displayDiv.style.opacity = 0;
+            setTimeout(() => {
+                displayDiv.innerHTML = `<div class="animal-emoji">${randomChoice.emoji}</div>`;
+                textElement.innerText = randomChoice.msg;
+                displayDiv.style.opacity = 1;
+            }, 150);
+        }
+
+        // Function to dynamically generate floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Randomize heart design
+            const heartTypes = ['💖', '💝', '❤️', '💕', '🌸'];
+            heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            
+            // Randomize spawn position across the screen width
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Randomize horizontal drifting distance during float
+            const randomX = (Math.random() * 200 - 100) + 'px';
+            heart.style.setProperty('--random-x', randomX);
+            
+            // Randomize animation speed so they don't all move at once
+            const duration = Math.random() * 2 + 3; // 3s to 5s
+            heart.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(heart);
+
+            // Clean up elements from DOM after animation finishes
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // Continuously spawn gentle background hearts naturally every second
+        setInterval(createHeart, 1200);
+    </script>
+</body>
+</html>
